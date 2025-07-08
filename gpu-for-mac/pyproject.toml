@@ -1,0 +1,177 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gpu-for-mac-zkp"
+description = "GPU accelerated Zero-Knowledge Proof computations for Mac"
+readme = "Readme.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "GPU for Mac ZKP Team", email = "contact@gpu-for-mac-zkp.dev"},
+]
+maintainers = [
+    {name = "GPU for Mac ZKP Team", email = "contact@gpu-for-mac-zkp.dev"},
+]
+keywords = ["gpu", "metal", "macos", "zkp", "zero-knowledge-proof", "cryptography"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "numpy>=1.20.0",
+    "scipy>=1.7.0",
+    "pyobjc-framework-Metal>=8.0",
+    "pyobjc-framework-MetalKit>=8.0",
+    "pyobjc-framework-Quartz>=8.0",
+    "pyobjc-core>=8.0",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-benchmark>=3.4.0",
+    "black>=21.0",
+    "flake8>=3.9.0",
+    "mypy>=0.910",
+    "jupyter>=1.0.0",
+    "matplotlib>=3.3.0",
+    "seaborn>=0.11.0",
+]
+docs = [
+    "sphinx>=4.0.0",
+    "sphinx-rtd-theme>=0.5.0",
+    "myst-parser>=0.15.0",
+]
+all = [
+    "pytest>=6.0",
+    "pytest-benchmark>=3.4.0",
+    "black>=21.0",
+    "flake8>=3.9.0",
+    "mypy>=0.910",
+    "jupyter>=1.0.0",
+    "matplotlib>=3.3.0",
+    "seaborn>=0.11.0",
+    "sphinx>=4.0.0",
+    "sphinx-rtd-theme>=0.5.0",
+    "myst-parser>=0.15.0",
+]
+
+[project.scripts]
+zkp-benchmark = "benchmarks.comprehensive_benchmark:main"
+zkp-simple-proof = "simple_proof.simple_zkp_example:main"
+
+[project.urls]
+Homepage = "https://github.com/gpu-for-mac/zkp-computations"
+Documentation = "https://gpu-for-mac-zkp.readthedocs.io/"
+Repository = "https://github.com/gpu-for-mac/zkp-computations.git"
+"Bug Tracker" = "https://github.com/gpu-for-mac/zkp-computations/issues"
+
+[tool.setuptools]
+packages = ["gpu_for_mac_zkp"]
+
+[tool.setuptools.package-data]
+gpu_for_mac_zkp = ["metal-shaders/**/*.metal", "metal-shaders/**/*.h"]
+
+[tool.setuptools_scm]
+write_to = "gpu_for_mac_zkp/_version.py"
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | venv
+)/
+'''
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    "venv",
+    ".venv",
+]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+disallow_untyped_decorators = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+exclude = [
+    "venv/",
+    "build/",
+    "dist/",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --strict-markers"
+testpaths = [
+    "tests",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "gpu: marks tests that require GPU",
+    "benchmark: marks benchmark tests",
+]
+
+[tool.coverage.run]
+source = ["gpu_for_mac_zkp"]
+omit = [
+    "*/tests/*",
+    "*/benchmarks/*",
+    "*/examples/*",
+    "venv/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]

@@ -1,0 +1,20 @@
+# GPU for Mac ZKP 计算库依赖
+
+# 核心依赖
+numpy>=1.20.0
+scipy>=1.7.0
+
+# PyObjC 框架 (Metal 支持)
+pyobjc-framework-Metal>=8.0
+pyobjc-framework-MetalKit>=8.0
+pyobjc-framework-Quartz>=8.0
+pyobjc-framework-Foundation>=8.0
+pyobjc-core>=8.0
+
+# 可选：性能分析和可视化
+matplotlib>=3.3.0
+seaborn>=0.11.0
+
+# 可选：Jupyter 支持
+jupyter>=1.0.0
+ipywidgets>=7.6.0

@@ -34,19 +34,3 @@ repo：https://github.com/ingonyama-zk/icicle.git
 
 Verifiable Processing Unit 专为从 ZKP 到 FHE 的加密应用而设计的处理器。VPU 采用专为下一代密码学量身定制的定制指令集架构，包括 ZKP、FHE、MPC 和其他算法。它为 MSM、NTT、多项式求值以及波塞冬 （1、2）、布莱克和其他哈希函数提供加速。VPU 支持高达 384 位的多精度矢量通道，并包括一个 RISC-V 内核，以增强可编程性。它支持 PCIe 4.0 x16 通道，每个芯片提供高达 256 Gbps 的速率，并配备高带宽 DRAM。此外，Fabric Cryptography 还提供具有 3 个 FC1000 芯片的 PCIe 卡，用于并行 ZK 证明生成，一个 PCIe 接口，用于全面的片上验证和加密，以及用于递归 ZK 证明生成和挖掘工作负载的 DRAM。它们还提供服务器系统和数据中心，以支持更大的工作负载。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
